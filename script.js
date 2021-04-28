@@ -20,7 +20,7 @@ function createTodoList() {
         ],
         printAll: function() {
             for (let i = 0; i < this.items.length; i++) {
-                console.log(this.items[i].text)
+                this.print(i);
             }
         },
         add: function(addAction) {
