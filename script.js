@@ -1,52 +1,78 @@
-function createTodoList() {
-    const todoListObject = {
-        items: [{
-                text: "Завершить текущий челлендж",
-                completed: false
-            },
-            {
-                text: "Отдохнуть во время перерыва",
-                completed: false
-            },
-            {
-                text: "Помочь напарнику понять код",
-                completed: false
-            },
-            {
-                text: "Выиграть в мафию",
-                completed: true
-            },
-
-        ],
-        printAll: function() {
-            for (let i = 0; i < this.items.length; i++) {
-                this.print(i);
-            }
-        },
-        add: function(addAction) {
-            this.items.unshift({
-                text: addAction,
-                completed: false
-            })
-        },
-        remove: function(index) {
-            this.items.splice(index, 1);
-        },
-        print: function(index) {
-            if (this.items[index].completed === true) {
-                console.log('[X]' + this.items[index].text);
-            } else {
-                console.log('[ ]' + this.items[index].text);
-            }
-        },
-        complete: function(index) {
-            this.items[index].completed = true;
-        }
+let items = [{
+        text: "Завершить текущий челлендж",
+        completed: false
+    },
+    {
+        text: "Отдохнуть во время перерыва",
+        completed: false
+    },
+    {
+        text: "Помочь напарнику понять код",
+        completed: false
+    },
+    {
+        text: "Выиграть в мафию",
+        completed: false
+    },
+    {
+        text: "Прийти, увидеть, победить",
+        completed: false
     }
-    return todoListObject;
+]
+
+function render(array) {
+    /*let list = document.getElementById('list');
+    list.textContent = ''
+    for (let i = 0; i < items.length; i++) {
+        let tagInput = document.createElement('input');
+        tagInput.type = 'checkbox';
+        let textContent = document.createElement('p');
+        textContent.prepend(items[i].text);
+        textContent.append(tagInput);
+        list.append(textContent);
+
+    }*/
+
+    let list = document.getElementById('list');
+    list.innerHTML = '';
+    array.forEach(function(item, i) {
+        let deleteBTN = document.createElement('button');
+        let check = document.createElement('input');
+        check.type = 'checkbox';
+        deleteBTN.prepend('X');
+        deleteBTN.classList.add('delete-btn')
+        deleteBTN.addEventListener('click', () => {
+            remove(i);
+        });
+        check.addEventListener('click', () => {
+            checkTodo(item);
+        });
+        let textContent = document.createElement('p');
+        textContent.prepend(item.text);
+        textContent.prepend(check);
+        textContent.append(deleteBTN);
+        list.append(textContent);
+    })
+};
+
+function remove(index) {
+    items.splice(index, 1);
+    render(items);
 }
 
-const todoList = createTodoList();
-todoList.add('Перейти к следующему релизу');
-todoList.complete(0);
-todoList.printAll();
+function addToDo() {
+    let entry = document.getElementById('text-enter');
+
+    items.push({
+        text: entry.value,
+        completed: false
+    });
+    render(items);
+}
+
+function checkTodo(index) {
+    index.completed = !index.completed;
+}
+
+
+render(items);

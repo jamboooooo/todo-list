@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.enter-block {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.text-enter {
+    margin: 7px 0 15px 0;
+}
+
+b {
+    margin-bottom: 15px;
+}
+
+.delete-btn {
+    margin-left: 15px;
+}
