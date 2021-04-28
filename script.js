@@ -23,9 +23,16 @@ function createTodoList() {
                 console.log(this.items[i].text)
             }
         },
+        add: function(addAction) {
+            this.items.unshift({
+                text: addAction,
+                completed: false
+            })
+        }
     }
     return todoListObject;
 }
 
 const todoList = createTodoList();
+todoList.add('Перейти к следующему релизу')
 todoList.printAll();
