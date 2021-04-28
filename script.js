@@ -38,6 +38,9 @@ function createTodoList() {
             } else {
                 console.log('[ ]' + this.items[index].text);
             }
+        },
+        complete: function(index) {
+            this.items[index].completed = true;
         }
     }
     return todoListObject;
@@ -45,6 +48,5 @@ function createTodoList() {
 
 const todoList = createTodoList();
 todoList.add('Перейти к следующему релизу');
-todoList.remove(1);
+todoList.complete(0);
 todoList.printAll();
-todoList.print(0);
