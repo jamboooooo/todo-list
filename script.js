@@ -28,11 +28,15 @@ function createTodoList() {
                 text: addAction,
                 completed: false
             })
+        },
+        remove: function(index) {
+            this.items.splice(index, 1);
         }
     }
     return todoListObject;
 }
 
 const todoList = createTodoList();
-todoList.add('Перейти к следующему релизу')
+todoList.add('Перейти к следующему релизу');
+todoList.remove(1);
 todoList.printAll();
