@@ -33,7 +33,11 @@ function createTodoList() {
             this.items.splice(index, 1);
         },
         print: function(index) {
-            console.log(this.items[index].text);
+            if (this.items[index].completed === true) {
+                console.log('[X]' + this.items[index].text);
+            } else {
+                console.log('[ ]' + this.items[index].text);
+            }
         }
     }
     return todoListObject;
